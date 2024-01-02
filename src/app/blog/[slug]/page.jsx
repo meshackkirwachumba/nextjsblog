@@ -1,4 +1,6 @@
+import PostUser from "@/components/postUser/PostUser";
 import Image from "next/image";
+import { Suspense } from "react";
 
 const getData = async (slug) => {
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
@@ -37,10 +39,11 @@ const SinglePostPage = async ({ params }) => {
             width={50}
             height={50}
           />
-          <div className="flex flex-col gap-1">
-            <span className="text-gray-500">Author</span>
-            <span>Meshack Kirwa</span>
-          </div>
+
+          <Suspense fallback={<div>Loading...</div>}>
+            <PostUser userId={post.userId} />
+          </Suspense>
+
           <div className="flex flex-col gap-1">
             <span className="text-gray-500">Published</span>
             <span>00/00/000</span>

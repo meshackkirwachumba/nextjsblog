@@ -17,9 +17,8 @@ export default function RootLayout({ children }) {
         <div
           className="
           container
-          bg-yellow-700
-          mx-auto
           min-h-screen
+          sm:mx-auto
           px-6
           flex
           flex-col

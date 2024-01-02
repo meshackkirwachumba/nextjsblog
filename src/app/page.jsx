@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 export default function Home() {
+  console.log("hello home");
   return (
     <div
       className="

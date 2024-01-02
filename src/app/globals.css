@@ -10,8 +10,6 @@
   --btn: #3673fd;
 }
 
-
-
 body {
   /* @apply bg-[var(--bg)] text-[var(--text)]; */
   background-color: var(--bg);

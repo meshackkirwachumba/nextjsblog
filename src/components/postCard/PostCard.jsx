@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const PostCard = () => {
+const PostCard = ({ post }) => {
   return (
     <div
       className="
@@ -24,16 +24,11 @@ const PostCard = () => {
 
       {/* bottom */}
       <div>
-        <h1 className="text-2xl mb-5 w-[90%] line-clamp-1">
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout. The point of
-        </h1>
+        <h1 className="text-2xl mb-5 w-[90%] line-clamp-1">{post.title}</h1>
         <p className="text-gray-400 font-thin w-[90%] mb-5 line-clamp-2">
-          Contrary to popular belief, Lorem Ipsum is not simply random text. It
-          has roots in a piece of classical Latin literature from 45 BC, making
-          it over 2000 years old. Richard McClintock, a Latin professor at
+          {post.body}
         </p>
-        <Link className="underline" href="/blog/123">
+        <Link className="underline" href={`/blog/${post.id}`}>
           READ MORE
         </Link>
       </div>

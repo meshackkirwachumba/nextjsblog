@@ -53,7 +53,7 @@ const Links = () => {
 
       {/* mobile view */}
       <button onClick={() => setOpen((prev) => !prev)} className="md:hidden">
-        <Image src="/menu.png" alt="menu" width={20} height={20} />
+        <Image src="/menu.png" alt="menu" width={30} height={30} />
       </button>
       {open && (
         <div
@@ -63,7 +63,8 @@ const Links = () => {
             top-[100px]
             w-1/2
             h-[calc(100vh-100px)]
-            bg-pink-500
+            bg-[var(--sidebar)]
+            z-10
             md:hidden
             flex
             flex-col
@@ -76,7 +77,11 @@ const Links = () => {
           "
         >
           {navLinks.map((link) => (
-            <NavLink key={link.title} item={link} />
+            <NavLink
+              key={link.title}
+              item={link}
+              onClick={() => setOpen((prev) => !prev)}
+            />
           ))}
           {session ? (
             <>
@@ -86,7 +91,10 @@ const Links = () => {
               </button>
             </>
           ) : (
-            <NavLink item={{ title: "Login", path: "/login" }} />
+            <NavLink
+              item={{ title: "Login", path: "/login" }}
+              onClick={() => setOpen((prev) => !prev)}
+            />
           )}
         </div>
       )}

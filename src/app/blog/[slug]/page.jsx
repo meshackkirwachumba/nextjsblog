@@ -1,8 +1,17 @@
 import PostUser from "@/components/postUser/PostUser";
 import { getPost } from "@/lib/data";
-import moment from "moment";
 import Image from "next/image";
 import { Suspense } from "react";
+
+// generate dynamic metadata
+export async function generateMetadata({ params }) {
+  const { slug } = params;
+  const post = await getPost(slug);
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+}
 
 // FETCH DATA USING API
 // const getData = async (slug) => {

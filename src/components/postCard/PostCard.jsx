@@ -21,7 +21,7 @@ const PostCard = ({ post }) => {
           </div>
         )}
         <span className="w-[10%] text-xs absolute top-3 right-5 rotate-45 m-auto">
-          {moment(post.createdAt).fromNow()}
+          {post?.createdAt?.toString()?.slice(4, 16)}
         </span>
       </div>
 

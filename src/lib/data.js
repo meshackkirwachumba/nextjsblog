@@ -1,5 +1,6 @@
 import { Post, User } from "./models";
 import { connectToDatabase } from "./utils";
+import { unstable_noStore as noStore } from "next/cache";
 
 // const users = [
 //   { id: 1, name: "John" },
@@ -48,7 +49,12 @@ export const getUsers = async () => {
     throw new Error("Failed to fetch users!");
   }
 };
+
+// unstable_noStore can be used to declaratively opt out of static rendering and indicate
+// a particular component should not be cached.
+//unstable_noStore is equivalent to cache: 'no-store' on a fetch
 export const getUser = async (id) => {
+  noStore();
   try {
     connectToDatabase();
 

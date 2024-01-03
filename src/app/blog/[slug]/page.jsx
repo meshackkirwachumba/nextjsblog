@@ -34,15 +34,7 @@ const SinglePostPage = async ({ params }) => {
       {/* text container */}
       <div className="w-full md:w-2/3 flex flex-col gap-5">
         <h1 className="text-3xl font-semibold">{post?.title}</h1>
-        <div className="flex gap-5 w-full first-line: ">
-          <Image
-            src={post?.img}
-            className="object-cover rounded-full w-[50px] h-[50px]"
-            alt="blog image"
-            width={50}
-            height={50}
-          />
-
+        <div className="flex gap-5 w-full ">
           {post && (
             <Suspense fallback={<div>Loading...</div>}>
               <PostUser userId={post.userId} />
@@ -51,7 +43,7 @@ const SinglePostPage = async ({ params }) => {
 
           <div className="flex flex-col gap-1">
             <span className="text-gray-500">Published</span>
-            <span>{moment(post?.createdAt).fromNow()}</span>
+            <span>{post?.createdAt?.toString()?.slice(4, 16)}</span>
           </div>
         </div>
         <div>{post?.desc}</div>

@@ -14,24 +14,24 @@ export async function generateMetadata({ params }) {
 }
 
 // FETCH DATA USING API
-// const getData = async (slug) => {
-//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
+const getData = async (slug) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${slug}`);
 
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch data");
-//   }
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
 
-//   return res.json();
-// };
+  return res.json();
+};
 
 const SinglePostPage = async ({ params }) => {
   const { slug } = params;
 
   // FETCH DATA USING API
-  //const post = await getData(slug);
+  const post = await getData(slug);
 
   // FETCH DATA WITHOUT API
-  const post = await getPost(slug);
+  //const post = await getPost(slug);
 
   return (
     <div className="flex flex-col md:flex-row w-full lg:gap-[100px] md:gap-9">

@@ -1,3 +1,4 @@
+import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,11 +15,13 @@ const PostCard = ({ post }) => {
     >
       {/* top */}
       <div className="flex relative">
-        <div className="relative h-[300px] w-[90%]">
-          <Image src="/contact.png" alt="" fill className="object-cover" />
-        </div>
+        {post.img && (
+          <div className="relative h-[300px] w-[90%]">
+            <Image src={post.img} alt="" fill className="object-cover" />
+          </div>
+        )}
         <span className="w-[10%] text-xs absolute top-3 right-5 rotate-45 m-auto">
-          01.01.2024
+          {moment(post.createdAt).fromNow()}
         </span>
       </div>
 
@@ -26,9 +29,9 @@ const PostCard = ({ post }) => {
       <div>
         <h1 className="text-2xl mb-5 w-[90%] line-clamp-1">{post.title}</h1>
         <p className="text-gray-400 font-thin w-[90%] mb-5 line-clamp-2">
-          {post.body}
+          {post.desc}
         </p>
-        <Link className="underline" href={`/blog/${post.id}`}>
+        <Link className="underline" href={`/blog/${post.slug}`}>
           READ MORE
         </Link>
       </div>

@@ -3,8 +3,10 @@
 import { useState } from "react";
 import NavLink from "../NavLink";
 import Image from "next/image";
+import { handleLogout } from "@/lib/action";
+import { useRouter } from "next/navigation";
 
-const Links = () => {
+const Links = ({ session }) => {
   const navLinks = [
     {
       title: "Homepage",
@@ -25,11 +27,17 @@ const Links = () => {
   ];
 
   // Temporary
-  const session = true;
-  const isAdmin = true;
+  // const session = true;
+  // const isAdmin = true;
 
   // for mobile view
   const [open, setOpen] = useState(false);
+
+  const router = useRouter();
+
+  if (session) {
+    router.replace("/");
+  }
 
   return (
     <div className="">
@@ -39,12 +47,16 @@ const Links = () => {
           <NavLink key={link.title} item={link} />
         ))}
 
-        {session ? (
+        {session?.user ? (
           <>
-            {isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
-            <button className="px-2.5 py-1.5 font-semibold bg-[var(--text)] text-[var(--bg)]">
-              Logout
-            </button>
+            {session?.user?.isAdmin && (
+              <NavLink item={{ title: "Admin", path: "/admin" }} />
+            )}
+            <form action={handleLogout}>
+              <button className="px-2.5 py-1.5 font-semibold bg-[var(--text)] text-[var(--bg)]">
+                Logout
+              </button>
+            </form>
           </>
         ) : (
           <NavLink item={{ title: "Login", path: "/login" }} />
@@ -83,12 +95,16 @@ const Links = () => {
               onClick={() => setOpen((prev) => !prev)}
             />
           ))}
-          {session ? (
+          {session?.user ? (
             <>
-              {isAdmin && <NavLink item={{ title: "Admin", path: "/admin" }} />}
-              <button className="px-2.5 py-1.5 font-semibold bg-[var(--text)] text-[var(--bg)]">
-                Logout
-              </button>
+              {session?.user?.isAdmin && (
+                <NavLink item={{ title: "Admin", path: "/admin" }} />
+              )}
+              <form action={handleLogout}>
+                <button className="px-2.5 py-1.5 font-semibold bg-[var(--text)] text-[var(--bg)]">
+                  Logout
+                </button>
+              </form>
             </>
           ) : (
             <NavLink

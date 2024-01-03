@@ -6,7 +6,10 @@ import Footer from "@/components/footer/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Next Basics",
+  title: {
+    default: "Next.js 14 Homepage",
+    template: "%s | Next.js 14",
+  },
   description: "Next.js basics with Tailwind CSS",
 };
 

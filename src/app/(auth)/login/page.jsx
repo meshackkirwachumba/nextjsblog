@@ -1,16 +1,48 @@
-import { handleGithubLogin } from "@/lib/action";
+import { handleGithubLogin, loginUserWithCredentials } from "@/lib/action";
 import { auth } from "@/lib/auth";
+import Link from "next/link";
 
 const LoginPage = async () => {
   const session = await auth();
 
-  console.log(session);
+  // console.log(session);
 
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <form action={handleGithubLogin}>
-        <button className="bg-blue-900 p-5">Login with Github</button>
-      </form>
+    <div className="w-full h-[calc(100vh-200px)] flex justify-center items-center text-white">
+      <div className="flex flex-col gap-5 w-full md:w-[45%]">
+        <h1 className="text-3xl font-semibold">Login</h1>
+        <form action={handleGithubLogin}>
+          <button className="bg-blue-900 p-4">Login with Github</button>
+        </form>
+
+        <form
+          action={loginUserWithCredentials}
+          className="flex flex-col gap-5 w-full"
+        >
+          <input
+            type="text"
+            placeholder="username"
+            name="username"
+            className="bg-slate-800 p-3 rounded border-2 border-slate-500 outline-none focus:border-slate-400"
+          />
+          <input
+            type="password"
+            placeholder="password"
+            name="password"
+            className="bg-slate-800 p-3 rounded border-2 border-slate-500 outline-none focus:border-slate-400"
+          />
+          <button className="bg-slate-800 p-3 rounded">Login</button>
+          <span>
+            Do not have an account?
+            <Link
+              href="/register"
+              className="text-slate-400 ml-2 underline cursor-pointer"
+            >
+              Create Account
+            </Link>
+          </span>
+        </form>
+      </div>
     </div>
   );
 };

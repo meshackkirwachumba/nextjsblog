@@ -4,7 +4,6 @@ import { useState } from "react";
 import NavLink from "../NavLink";
 import Image from "next/image";
 import { handleLogout } from "@/lib/action";
-import { useRouter } from "next/navigation";
 
 const Links = ({ session }) => {
   const navLinks = [
@@ -33,11 +32,11 @@ const Links = ({ session }) => {
   // for mobile view
   const [open, setOpen] = useState(false);
 
-  const router = useRouter();
+  // const router = useRouter();
 
-  if (session) {
-    router.replace("/");
-  }
+  // if (session) {
+  //   router.replace("/");
+  // }
 
   return (
     <div className="">
